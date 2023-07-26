@@ -13,7 +13,7 @@ export class QuizGeneratorComponent {
     difficulty: new FormControl('')
   });
 
-  constructor(private quiz: QuizService) { }
+  constructor(public quiz: QuizService) { }
 
   onSubmit(): void {
     const { category, difficulty } = this.quizSettings.value

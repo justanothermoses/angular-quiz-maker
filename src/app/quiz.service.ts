@@ -2,26 +2,33 @@ import { Injectable } from '@angular/core';
 import { Question } from './question';
 import { HttpClient } from '@angular/common/http';
 import { Category } from './category';
-import { Observable, catchError, lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
-  private url = 'https://opentdb.com'
+  private origin = 'https://opentdb.com'
+  private questionsAmount = '5'
+  private questionsType = 'multiple'
+
   public questions: Question[] = []
-  public categories$: Observable<{ trivia_categories: Category[]}> | null = null;
+  public categories: Category[] = [];
 
   constructor(private http: HttpClient) {
     this.fetchCategories()
   }
 
-  async fetchCategories(): Promise<void> {
-    this.categories$ = this.http.get<{ trivia_categories: Category[]}>(`${this.url}/api_category.php`)
+  fetchCategories(): void {
+    const url = `${this.origin}/api_category.php`
+    const categories$ = this.http.get<{ trivia_categories: Category[] }>(url)
+    lastValueFrom(categories$).then(res => this.categories = res.trivia_categories)
   }
 
   fetchQuestions(category: string, difficulty: string): void {
-    console.log(category, difficulty)
+    const url = `${this.origin}/api.php?amount=${this.questionsAmount}&category=${category}&difficulty=${difficulty}&type=${this.questionsType}`
+    const questions$ = this.http.get<any>(url)
+    lastValueFrom(questions$).then(console.log)
   }
 }

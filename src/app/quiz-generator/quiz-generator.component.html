@@ -1,18 +1,18 @@
 <form [formGroup]="quizSettings" (submit)="onSubmit()">
     <mat-form-field>
-        <mat-select formControlName="category">
-            <mat-option value="cat1">Kategorie Eins</mat-option>
-            <mat-option value="cat2">Kategorie Anderes</mat-option>
+        <mat-select formControlName="category" id="categorySelect">
+            <mat-option *ngFor="let cat of quiz.categories" value="{{ cat.id }}">{{
+                cat.name}}</mat-option>
         </mat-select>
     </mat-form-field>
 
     <mat-form-field>
-        <mat-select formControlName="difficulty">
+        <mat-select formControlName="difficulty" id="difficultySelect">
             <mat-option value="easy">Easy</mat-option>
             <mat-option value="medium">Medium</mat-option>
             <mat-option value="hard">Hard</mat-option>
         </mat-select>
     </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary">Create</button>
+    <button type="submit" mat-raised-button color="primary" id="createBtn">Create</button>
 </form>
