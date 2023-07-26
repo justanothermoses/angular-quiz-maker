@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { QuizGeneratorComponent } from './quiz-generator/quiz-generator.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizGeneratorComponent,
     QuizComponent,
+    QuestionComponent,
   ],
   imports: [
     HttpClientModule,

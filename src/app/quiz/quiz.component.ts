@@ -6,10 +6,9 @@ import { QuizService } from '../quiz.service';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss']
 })
-export class QuizComponent implements OnInit{
-  constructor(private quiz: QuizService) {}
+export class QuizComponent implements OnInit {
+  constructor(public quiz: QuizService) { }
 
   ngOnInit(): void {
-      // console.log(this.quiz)
   }
 }

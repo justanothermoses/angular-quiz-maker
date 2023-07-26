@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { QuizService } from '../quiz.service';
+import { Difficulty } from '../difficulty';
 
 @Component({
   selector: 'app-quiz-generator',
@@ -8,6 +9,7 @@ import { QuizService } from '../quiz.service';
   styleUrls: ['./quiz-generator.component.scss']
 })
 export class QuizGeneratorComponent {
+  public difficulties = Difficulty;
   public quizSettings = new FormGroup({
     category: new FormControl(''),
     difficulty: new FormControl('')
@@ -18,7 +20,7 @@ export class QuizGeneratorComponent {
   onSubmit(): void {
     const { category, difficulty } = this.quizSettings.value
     if (!category || !difficulty) return
-    
+
     this.quiz.fetchQuestions(category, difficulty)
   }
 }
