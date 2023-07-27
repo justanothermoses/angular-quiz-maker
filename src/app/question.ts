@@ -1,9 +1,7 @@
-import { Difficulty } from "./difficulty"
-
 export interface Question {
     category: string
     correct_answer: string 
-    difficulty: Difficulty
+    difficulty: string
     incorrect_answers: string[]
     question: string
     type: string

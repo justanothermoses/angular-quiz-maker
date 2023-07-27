@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Category } from './category';
 import { lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import { Difficulty } from './difficulty';
 
 
 @Injectable({
@@ -16,6 +17,20 @@ export class QuizService {
 
   public questions: Question[] = []
   public categories: Category[] = [];
+  public difficulties: Difficulty[] = [
+    {
+      value: 'easy',
+      label: 'Easy'
+    },
+    {
+      value: 'medium',
+      label: 'Medium'
+    },
+    {
+      value: 'hard',
+      label: 'Hard'
+    }
+  ]
 
   constructor(private http: HttpClient, private router: Router) {
     this.fetchCategories()
