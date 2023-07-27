@@ -21,15 +21,13 @@ export class ResultsComponent implements OnInit {
     return this.quiz.questions.length
   }
 
-  get scoreStyle() {
-    let backgroundColor = 'yellow'
+  get scoreClass() {
+    let color = 'yellow'
 
-    if (this.score <= 1) backgroundColor = 'red'
-    if (this.score > this.maxScore - 2) backgroundColor = 'green'
+    if (this.score <= 1) color = 'red'
+    if (this.score > this.maxScore - 2) color = 'green'
 
-    return {
-      backgroundColor,
-    }
+    return `score-class-${color}`
   }
   createNewQuiz() {
     this.quiz.createNewQuiz()

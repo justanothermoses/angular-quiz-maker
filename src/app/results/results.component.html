@@ -1,7 +1,7 @@
-<div>
+<div class="results">
     <app-question *ngFor="let question of quiz.questions" [question]="question"></app-question>
 
-    <p [ngStyle]="scoreStyle">
+    <p class="score-class" [ngClass]="scoreClass">
         You scored {{ score }} out of {{ maxScore }}
     </p>
 

@@ -1,0 +1,19 @@
+@import '../vars.scss';
+
+.score-class {
+    padding: 1em;
+
+    &.score-class-yellow {
+        background-color: $warnColor;
+    }
+        
+    &.score-class-red {
+        background-color: $alertColor;
+        color: #fff
+    }
+
+    &.score-class-green {
+        background-color: $highlightColor;
+        color: #fff
+    }
+}

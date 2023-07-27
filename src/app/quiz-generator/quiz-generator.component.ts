@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { QuizService } from '../quiz.service';
 import { Difficulty } from '../difficulty';
@@ -6,7 +6,8 @@ import { Difficulty } from '../difficulty';
 @Component({
   selector: 'app-quiz-generator',
   templateUrl: './quiz-generator.component.html',
-  styleUrls: ['./quiz-generator.component.scss']
+  styleUrls: ['./quiz-generator.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class QuizGeneratorComponent {
   public difficulties = Difficulty;

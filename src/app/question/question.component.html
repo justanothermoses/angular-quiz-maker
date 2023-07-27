@@ -1,4 +1,4 @@
-<div *ngIf="question">
+<div *ngIf="question" class="question">
     <p innerHTML="{{question.question}}"></p>
 
     <mat-button-toggle-group *ngIf="!showResults; else results" [(ngModel)]="question.chosenAnswer">
@@ -8,7 +8,7 @@
 
     <ng-template #results>
         <mat-button-toggle-group>
-            <mat-button-toggle *ngFor="let option of question.options" value="{{option}}" aria-disabled="true" disabled mat-stroked-button [ngStyle]="getButtonStyle(option)" color="green">
+            <mat-button-toggle *ngFor="let option of question.options" value="{{option}}" aria-disabled="true" disabled mat-stroked-button class="mat-button-toggle-no-hover" [ngClass]="getButtonClass(option)" color="green">
                 <span innerHTML="{{option}}"></span></mat-button-toggle>
         </mat-button-toggle-group>
     </ng-template>

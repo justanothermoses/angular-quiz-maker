@@ -21,22 +21,11 @@ export class QuestionComponent {
     return window.location.pathname === '/results'
   }
 
-  getButtonStyle(option: string) {
-    let backgroundColor, color
+  getButtonClass(option: string) {
+    if (this.question?.correct_answer === option) return 'mat-button-toggle-is-right'
+    
+    if (this.question?.chosenAnswer === option) return 'mat-button-toggle-is-wrong'
 
-    if (this.question?.chosenAnswer === option) {
-      backgroundColor = 'red'
-      color = 'white', color
-    }
-
-    if (this.question?.correct_answer === option) {
-      backgroundColor = 'green'
-      color = 'white'
-    }
-
-    return {
-      backgroundColor,
-      color
-    }
+    return ''
   }
 }

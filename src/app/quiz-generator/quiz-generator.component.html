@@ -1,5 +1,6 @@
-<form [formGroup]="quizSettings" (submit)="onSubmit()">
+<form [formGroup]="quizSettings" (submit)="onSubmit()" class="quiz-generator">
     <mat-form-field>
+        <mat-label>Select a category</mat-label>
         <mat-select formControlName="category" id="categorySelect">
             <mat-option *ngFor="let cat of quiz.categories" value="{{ cat.id }}">{{
                 cat.name}}</mat-option>
@@ -7,8 +8,10 @@
     </mat-form-field>
 
     <mat-form-field>
+        <mat-label>Select difficulty</mat-label>
         <mat-select formControlName="difficulty" id="difficultySelect">
-            <mat-option *ngFor="let difficulty of difficulties | keyvalue" value="{{ difficulty.key }}">{{ difficulty.value }}</mat-option>
+            <mat-option *ngFor="let difficulty of difficulties | keyvalue" value="{{ difficulty.key }}">{{
+                difficulty.value }}</mat-option>
         </mat-select>
     </mat-form-field>
 

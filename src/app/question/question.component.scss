@@ -1,0 +1,31 @@
+@import '../vars.scss';
+
+.question {
+    margin: 2em 0;
+
+    .mat-button-toggle-group {
+        display: flex;
+        gap: 1em;
+        flex-wrap: wrap;
+        border: none;
+    }
+
+    .mat-button-toggle {
+        border: 1px solid $highlightColor;
+        color: $highlightColor;
+        border-radius: 12px;
+
+        &:not(.mat-button-toggle-no-hover):hover,
+        &.mat-button-toggle-checked,
+        &.mat-button-toggle-is-right {
+            background-color: $highlightColor;
+            color: #fff;
+        }
+
+        &.mat-button-toggle-is-wrong {
+            border-color: $alertColor;
+            background-color: $alertColor;
+            color: #fff;
+        }
+    }
+}
