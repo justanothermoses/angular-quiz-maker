@@ -7,4 +7,6 @@ export interface Question {
     incorrect_answers: string[]
     question: string
     type: string
+    options: string[]
+    chosenAnswer: string | null,
 }
