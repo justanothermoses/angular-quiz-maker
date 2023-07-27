@@ -19,7 +19,6 @@ export class QuizService {
 
   constructor(private http: HttpClient, private router: Router) {
     this.fetchCategories()
-    this.fetchQuestions('9', 'hard')
   }
 
   get resultsAllowed() {
