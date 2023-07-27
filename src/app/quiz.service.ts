@@ -3,6 +3,7 @@ import { Question } from './question';
 import { HttpClient } from '@angular/common/http';
 import { Category } from './category';
 import { lastValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -15,9 +16,11 @@ export class QuizService {
 
   public questions: Question[] = []
   public categories: Category[] = [];
+  public showResults = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.fetchCategories()
+    this.fetchQuestions('9', 'hard')
   }
 
   fetchCategories(): void {
@@ -26,9 +29,29 @@ export class QuizService {
     lastValueFrom(categories$).then(response => this.categories = response.trivia_categories)
   }
 
-  fetchQuestions(category: string, difficulty: string): void {
+  async fetchQuestions(category: string, difficulty: string): Promise<void> {
     const url = `${this.origin}/api.php?amount=${this.questionsAmount}&category=${category}&difficulty=${difficulty}&type=${this.questionsType}`
-    const questions$ = this.http.get<any>(url)
-    lastValueFrom(questions$).then(response => this.questions = response.results)
+    const questions$ = this.http.get<{ results: Question[] }>(url)
+    const response = await lastValueFrom(questions$).catch(console.error)
+
+    const questions = response?.results.map(question => {
+      const answers = [
+        question.correct_answer,
+        ...question.incorrect_answers
+      ]
+      question.options = answers.sort(() => Math.random() - 0.5)
+      question.chosenAnswer = null
+      return question
+    }) ?? null
+
+    if (!questions) return
+
+    this.questions = questions
+    this.showResults = false
+  }
+
+  checkAnswers(): void {
+    this.showResults = true
+    this.router.navigate(['results'])
   }
 }
