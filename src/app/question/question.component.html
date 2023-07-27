@@ -1,3 +1,8 @@
-<div>
-    <p innerHTML="{{question?.question}}"></p>
+<div *ngIf="question">
+    <p innerHTML="{{question.question}}"></p>
+
+    <mat-button-toggle-group [(ngModel)]="question.chosenAnswer">
+        <mat-button-toggle *ngFor="let option of question.options" value="{{option}}">
+            <span innerHTML="{{option}}"></span></mat-button-toggle>
+    </mat-button-toggle-group>
 </div>

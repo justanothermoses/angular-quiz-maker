@@ -1,21 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Question } from '../question';
+import { QuizService } from '../quiz.service';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss']
+  styleUrls: ['./question.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuestionComponent {
   @Input() question: Question | null = null;
 
-  constructor() { }
+  constructor(public quiz: QuizService) { }
 
-  answers(question: Question): string[] {
-    const answers = [
-      question.correct_answer,
-      ...question.incorrect_answers
-    ]
-    return answers.sort(() => Math.random() - 0.5)
+  get isRight() {
+    if (!this.quiz.showResults) return null
+    return this.question?.chosenAnswer === this.question?.correct_answer
   }
 }
