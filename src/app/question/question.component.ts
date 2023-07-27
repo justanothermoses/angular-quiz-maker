@@ -14,7 +14,29 @@ export class QuestionComponent {
   constructor(public quiz: QuizService) { }
 
   get isRight() {
-    if (!this.quiz.showResults) return null
     return this.question?.chosenAnswer === this.question?.correct_answer
+  }
+
+  get showResults() {
+    return window.location.pathname === '/results'
+  }
+
+  getButtonStyle(option: string) {
+    let backgroundColor, color
+
+    if (this.question?.chosenAnswer === option) {
+      backgroundColor = 'red'
+      color = 'white', color
+    }
+
+    if (this.question?.correct_answer === option) {
+      backgroundColor = 'green'
+      color = 'white'
+    }
+
+    return {
+      backgroundColor,
+      color
+    }
   }
 }

@@ -1,8 +1,15 @@
 <div *ngIf="question">
     <p innerHTML="{{question.question}}"></p>
 
-    <mat-button-toggle-group [(ngModel)]="question.chosenAnswer">
-        <mat-button-toggle *ngFor="let option of question.options" value="{{option}}">
+    <mat-button-toggle-group *ngIf="!showResults; else results" [(ngModel)]="question.chosenAnswer">
+        <mat-button-toggle *ngFor="let option of question.options" value="{{option}}" mat-stroked-button>
             <span innerHTML="{{option}}"></span></mat-button-toggle>
     </mat-button-toggle-group>
+
+    <ng-template #results>
+        <mat-button-toggle-group>
+            <mat-button-toggle *ngFor="let option of question.options" value="{{option}}" aria-disabled="true" disabled mat-stroked-button [ngStyle]="getButtonStyle(option)" color="green">
+                <span innerHTML="{{option}}"></span></mat-button-toggle>
+        </mat-button-toggle-group>
+    </ng-template>
 </div>
