@@ -1,3 +1,8 @@
-<div>
+<app-quiz-generator></app-quiz-generator>
+
+<form (submit)="onSubmit()">
+
     <app-question *ngFor="let question of quiz.questions" [question]="question"></app-question>
-</div>
+
+    <button *ngIf="showSubmitButton" type="submit" mat-raised-button color="primary" id="createBtn">Submit</button>
+</form>
