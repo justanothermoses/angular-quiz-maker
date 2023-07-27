@@ -16,11 +16,15 @@ export class QuizService {
 
   public questions: Question[] = []
   public categories: Category[] = [];
-  public showResults = false;
 
   constructor(private http: HttpClient, private router: Router) {
     this.fetchCategories()
     this.fetchQuestions('9', 'hard')
+  }
+
+  get resultsAllowed() {
+    if (this.questions.length === 0) return false
+    return this.questions.every(question => !!question.chosenAnswer)
   }
 
   fetchCategories(): void {
@@ -47,11 +51,14 @@ export class QuizService {
     if (!questions) return
 
     this.questions = questions
-    this.showResults = false
   }
 
   checkAnswers(): void {
-    this.showResults = true
     this.router.navigate(['results'])
+  }
+
+  createNewQuiz() {
+    this.router.navigate([''])
+    this.questions = []
   }
 }
