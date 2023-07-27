@@ -10,7 +10,7 @@ export class QuizComponent {
   constructor(public quiz: QuizService) { }
 
   get showSubmitButton() {
-    return this.quiz.questions.every(question => !!question.chosenAnswer)
+    return this.quiz.resultsAllowed
   }
 
   onSubmit(): void {
