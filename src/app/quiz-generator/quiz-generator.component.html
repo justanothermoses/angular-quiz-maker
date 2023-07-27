@@ -10,8 +10,8 @@
     <mat-form-field>
         <mat-label>Select difficulty</mat-label>
         <mat-select formControlName="difficulty" id="difficultySelect">
-            <mat-option *ngFor="let difficulty of difficulties | keyvalue" value="{{ difficulty.key }}">{{
-                difficulty.value }}</mat-option>
+            <mat-option *ngFor="let difficulty of quiz.difficulties" value="{{ difficulty.value }}">{{
+                difficulty.label }}</mat-option>
         </mat-select>
     </mat-form-field>
 

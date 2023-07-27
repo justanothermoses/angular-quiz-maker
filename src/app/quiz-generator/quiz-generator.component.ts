@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { QuizService } from '../quiz.service';
-import { Difficulty } from '../difficulty';
 
 @Component({
   selector: 'app-quiz-generator',
@@ -10,7 +9,6 @@ import { Difficulty } from '../difficulty';
   encapsulation: ViewEncapsulation.None,
 })
 export class QuizGeneratorComponent {
-  public difficulties = Difficulty;
   public quizSettings = new FormGroup({
     category: new FormControl(''),
     difficulty: new FormControl('')
